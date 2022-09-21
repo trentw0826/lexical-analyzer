@@ -1,3 +1,4 @@
+#include <cctype>
 #include "Lexer.h"
 #include "ColonAutomaton.h"
 #include "ColonDashAutomaton.h"
@@ -7,7 +8,10 @@ Lexer::Lexer() {
 }
 
 Lexer::~Lexer() {
-    // TODO: need to clean up the memory in `automata` and `tokens`
+    while(!automata.empty()) delete automata.back(), automata.pop_back();
+    while(!tokens.empty()) delete tokens.back(), tokens.pop_back();
+
+
 }
 
 void Lexer::CreateAutomata() {
@@ -17,15 +21,59 @@ void Lexer::CreateAutomata() {
 }
 
 void Lexer::Run(std::string& input) {
-    // TODO: convert this pseudo-code with the algorithm into actual C++ code
+
+    int lineNumber = 1;
+    int iteration = 0;
+    while (!input.empty()){
+        int maxRead = 0;
+
+        iteration++;
+        std::cout << "---Iteration " << iteration << "---" << std::endl;
+        std::cout << "Current String: \"" << input << "\"" << std::endl;
+
+        Automaton* maxAutomaton = automata.at(0);
+
+        while(std::isspace(input.front())){
+            if(input.front() == '\n'){
+                std::cout << "Newline detected, incrementing lineNumber" << std::endl;
+                lineNumber++;
+            }
+            std::cout << "Erasing leading whitespace" << std::endl;
+            input.erase(0,1);
+            std::cout << "Updated String: \"" << input << "\"" << std::endl;
+        }
+
+        for (Automaton* currAutomaton : automata){
+            int inputRead = currAutomaton->Start(input);
+            if (inputRead > maxRead){
+                std::cout << "Updating maxRead to " << std::to_string(inputRead) << std::endl;
+                std::cout << "Updating maxAutomaton to " << maxAutomaton->getAutoType() << " type" << std::endl;
+                maxRead = inputRead;
+                maxAutomaton = currAutomaton;
+            }
+        }
+        if (maxRead > 0){
+            std::cout << "Creating new " << maxAutomaton->getAutoType() << " token" << std::endl;
+            Token* newToken = maxAutomaton->CreateToken(input, lineNumber);
+            lineNumber += maxAutomaton->NewLinesRead();
+            tokens.push_back(newToken);
+        }
+        else{ //No token accepted, make undefined token
+            std::cout << "Creating an undefined Token" << std::endl;
+            maxRead = 1;
+            //TODO:Create undefined token class and assign Token* newToken = UndefinedAutomaton->CreateToken(input, lineNumber);
+            //TODO:Then add newToken to 'tokens' vector
+        }
+        input.erase(input.begin(), input.begin() + maxRead);
+    }
+
+
     /*
     set lineNumber to 1
     // While there are more characters to tokenize
     loop while input.size() > 0 {
         set maxRead to 0
         set maxAutomaton to the first automaton in automata
-
-        // TODO: you need to handle whitespace inbetween tokens
 
         // Here is the "Parallel" part of the algorithm
         //   Each automaton runs with the same input

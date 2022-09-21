@@ -17,6 +17,52 @@ public:
 
     Automaton(TokenType type) { this->type = type; }
 
+    virtual ~Automaton() = default;
+
+    std::string getAutoType(){
+        switch(type) {
+            case TokenType::COLON:
+                return "COLON";
+            case TokenType::COLON_DASH:
+                return "COLON_DASH";
+            case TokenType::COMMA:
+                return "COMMA";
+            case TokenType::PERIOD:
+                return "PERIOD";
+            case TokenType::Q_MARK:
+                return "Q_MARK";
+            case TokenType::lEFT_PAREN:
+                return "lEFT_PAREN";
+            case TokenType::RIGHT_PAREN:
+                return "RIGHT_PAREN";
+            case TokenType::MULTIPLY:
+                return "MULTIPLY";
+            case TokenType::ADD:
+                return "ADD";
+            case TokenType::SCHEMES:
+                return "SCHEMES";
+            case TokenType::FACTS:
+                return "FACTS";
+            case TokenType::RULES:
+                return "RULES";
+            case TokenType::QUERIES:
+                return "QUERIES";
+            case TokenType::ID:
+                return "ID";
+            case TokenType::STRING:
+                return "STRING";
+            case TokenType::COMMENT:
+                return "COMMENT";
+            case TokenType::UNDEFINED:
+                return "UNDEFINED";
+            case TokenType::ENDOFFILE:
+                return "EOF";
+            default:
+                std::cerr << "Unknown Token Type\n";
+                exit(1);
+        }
+    }
+
     // Start the automaton and return the number of characters read
     //   read == 0 indicates the input was rejected
     //   read  > 0 indicates the input was accepted

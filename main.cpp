@@ -26,9 +26,7 @@ int main(int argc, char** argv) {
     bufferStream << inputFile.rdbuf();
     inputText = bufferStream.str();
 
-    std::cout << "Input String: \"" << inputText << "\"\n";
-
-//    lexer->Run(inputText);
+    lexer->Run(inputText);
 
     delete lexer;
 
