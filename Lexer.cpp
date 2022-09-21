@@ -28,7 +28,7 @@ void Lexer::Run(std::string& input) {
         int maxRead = 0;
 
         iteration++;
-        std::cout << "---Iteration " << iteration << "---" << std::endl;
+        std::cout << "    -=-<Iteration #" << iteration << ">-=-" << std::endl;
         std::cout << "Current String: \"" << input << "\"" << std::endl;
 
         Automaton* maxAutomaton = automata.at(0);
@@ -42,18 +42,22 @@ void Lexer::Run(std::string& input) {
             input.erase(0,1);
             std::cout << "Updated String: \"" << input << "\"" << std::endl;
         }
+        if(input.empty()){
+            std::cout << "Updated String is empty, breaking loop" << std::endl;
+            break;
+        }
 
         for (Automaton* currAutomaton : automata){
             int inputRead = currAutomaton->Start(input);
             if (inputRead > maxRead){
                 std::cout << "Updating maxRead to " << std::to_string(inputRead) << std::endl;
-                std::cout << "Updating maxAutomaton to " << maxAutomaton->getAutoType() << " type" << std::endl;
+                std::cout << "Updating maxAutomaton to " << currAutomaton->getAutoType() << " type" << std::endl;
                 maxRead = inputRead;
                 maxAutomaton = currAutomaton;
             }
         }
         if (maxRead > 0){
-            std::cout << "Creating new " << maxAutomaton->getAutoType() << " token" << std::endl;
+            std::cout << "<=> Creating new " << maxAutomaton->getAutoType() << " token <=>" << std::endl;
             Token* newToken = maxAutomaton->CreateToken(input, lineNumber);
             lineNumber += maxAutomaton->NewLinesRead();
             tokens.push_back(newToken);
@@ -64,8 +68,11 @@ void Lexer::Run(std::string& input) {
             //TODO:Create undefined token class and assign Token* newToken = UndefinedAutomaton->CreateToken(input, lineNumber);
             //TODO:Then add newToken to 'tokens' vector
         }
+        std::cout << "Erasing " << std::to_string(maxRead) << " characters from current input" << std::endl;
         input.erase(input.begin(), input.begin() + maxRead);
     }
+    std::cout << "EOF reached" << std::endl;
+    //TODO:Add EOF token here
 
 
     /*
