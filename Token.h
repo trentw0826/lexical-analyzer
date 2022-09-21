@@ -80,7 +80,7 @@ public:
 
     std::string toString(){
         std::string typeString = typeToString(type);
-        return ("(" + typeString + ",\"" + description + "\"," + line + ")";
+        return ("(" + typeString + ",\"" + description + "\"," + std::to_string(line) + ")");
     }
 
     // TODO: add other needed methods
