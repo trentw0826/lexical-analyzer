@@ -31,7 +31,7 @@ public:
                 return "PERIOD";
             case TokenType::Q_MARK:
                 return "Q_MARK";
-            case TokenType::lEFT_PAREN:
+            case TokenType::LEFT_PAREN:
                 return "lEFT_PAREN";
             case TokenType::RIGHT_PAREN:
                 return "RIGHT_PAREN";
@@ -55,7 +55,7 @@ public:
                 return "COMMENT";
             case TokenType::UNDEFINED:
                 return "UNDEFINED";
-            case TokenType::ENDOFFILE:
+            case TokenType::END_OF_FILE:
                 return "EOF";
             default:
                 std::cerr << "Unknown Token Type\n";

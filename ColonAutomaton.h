@@ -12,4 +12,3 @@ public:
 };
 
 #endif // COLONAUTOMATON_H
-

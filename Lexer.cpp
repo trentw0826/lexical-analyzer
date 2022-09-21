@@ -1,7 +1,15 @@
 #include <cctype>
 #include "Lexer.h"
 #include "ColonAutomaton.h"
+#include "AddAutomaton.h"
+#include "CommaAutomaton.h"
+#include "Left_ParenAutomaton.h"
+#include "MultiplyAutomaton.h"
+#include "PeriodAutomaton.h"
+#include "Q_MarkAutomaton.h"
+#include "Right_ParenAutomaton.h"
 #include "ColonDashAutomaton.h"
+#include "End_Of_FileAutomaton.h"
 
 Lexer::Lexer() {
     CreateAutomata();
@@ -15,13 +23,20 @@ Lexer::~Lexer() {
 }
 
 void Lexer::CreateAutomata() {
+    automata.push_back(new AddAutomaton());
     automata.push_back(new ColonAutomaton());
+    automata.push_back(new CommaAutomaton());
+    automata.push_back(new Left_ParenAutomaton());
+    automata.push_back(new MultiplyAutomaton());
+    automata.push_back(new PeriodAutomaton());
+    automata.push_back(new Q_MarkAutomaton());
+    automata.push_back(new Right_ParenAutomaton());
     automata.push_back(new ColonDashAutomaton());
+    automata.push_back(new End_Of_FileAutomaton());
     // TODO: Add the other needed automata here
 }
 
 void Lexer::Run(std::string& input) {
-
     int lineNumber = 1;
     int iteration = 0;
     while (!input.empty()){
@@ -71,8 +86,9 @@ void Lexer::Run(std::string& input) {
         std::cout << "Erasing " << std::to_string(maxRead) << " characters from current input" << std::endl;
         input.erase(input.begin(), input.begin() + maxRead);
     }
-    std::cout << "EOF reached" << std::endl;
-    //TODO:Add EOF token here
+    std::cout << "EOF reached, adding EOF token" << std::endl;
+    //TODO Add End_Of_File Token to Tokens here
+//    Token* newToken = End_Of_FileAutomaton->CreateToken(input, lineNumber);
 
 
     /*
