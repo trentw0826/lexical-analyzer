@@ -12,6 +12,7 @@
 #include "End_Of_FileAutomaton.h"
 #include "UndefinedAutomaton.h"
 #include "SchemesAutomaton.h"
+#include "FactsAutomaton.h"
 
 //TODO: Finish including all automaton classes
 
@@ -37,6 +38,7 @@ void Lexer::CreateAutomata() {
     automata.push_back(new End_Of_FileAutomaton());
     automata.push_back(new UndefinedAutomaton());
     automata.push_back(new SchemesAutomaton());
+    automata.push_back(new FactsAutomaton());
 
     // TODO: Add the other needed automata here
 }
