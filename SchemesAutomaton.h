@@ -12,7 +12,6 @@ private:
     void S4(const std::string& input);
     void S5(const std::string& input);
     void S6(const std::string& input);
-    void S7(const std::string& input);
 
 public:
     SchemesAutomaton() : Automaton(TokenType::SCHEMES) {}  // Call the base constructor

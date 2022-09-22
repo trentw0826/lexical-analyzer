@@ -48,8 +48,8 @@ void Lexer::Run(std::string& input) {
         int maxRead = 0;
 
         iteration++;
-        std::cout << "    -=-<Iteration #" << iteration << ">-=-" << std::endl;
-        std::cout << "Current String: \"" << input << "\"" << std::endl;
+//        std::cout << "    -=-<Iteration #" << iteration << ">-=-" << std::endl;
+//        std::cout << "Current String: \"" << input << "\"" << std::endl;
 
         Automaton *maxAutomaton = automata.at(0);
 
@@ -68,27 +68,28 @@ void Lexer::Run(std::string& input) {
         }
 
         for (Automaton *currAutomaton: automata) {
+//            std::cout << "Reading input into " << currAutomaton->getAutoType() << " automaton" << std::endl;
             int inputRead = currAutomaton->Start(input);
             if (inputRead > maxRead) {
-                std::cout << "Updating maxRead to " << std::to_string(inputRead) << std::endl;
-                std::cout << "Updating maxAutomaton to " << currAutomaton->getAutoType() << " type" << std::endl;
+//                std::cout << "Updating maxRead to " << std::to_string(inputRead) << std::endl;
+//                std::cout << "Updating maxAutomaton to " << currAutomaton->getAutoType() << " type" << std::endl;
                 maxRead = inputRead;
                 maxAutomaton = currAutomaton;
             }
         }
         if (maxRead > 0) {
-            std::cout << "<=> Creating new " << maxAutomaton->getAutoType() << " token <=>" << std::endl;
+//            std::cout << "<=> Creating new " << maxAutomaton->getAutoType() << " token <=>" << std::endl;
             Token *newToken = maxAutomaton->CreateToken((input.substr(0, maxRead)), lineNumber);
             lineNumber += maxAutomaton->NewLinesRead();
             tokens.push_back(newToken);
         } else { //No token accepted, make undefined token
-            std::cout << "Creating an undefined Token" << std::endl;
+//            std::cout << "Creating an undefined Token" << std::endl;
             maxRead = 1;
             Automaton* UndefAutomaton = new UndefinedAutomaton();
             Token* newToken = UndefAutomaton->CreateToken(input, lineNumber);
             tokens.push_back(newToken);
         }
-        std::cout << "Erasing " << std::to_string(maxRead) << " characters from current input" << std::endl;
+//        std::cout << "Erasing " << std::to_string(maxRead) << " characters from current input" << std::endl;
         input.erase(input.begin(), input.begin() + maxRead);
     }
 //    std::cout << "EOF reached, adding EOF token" << std::endl;
