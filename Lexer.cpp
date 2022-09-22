@@ -11,6 +11,9 @@
 #include "ColonDashAutomaton.h"
 #include "End_Of_FileAutomaton.h"
 #include "UndefinedAutomaton.h"
+#include "SchemesAutomaton.h"
+
+//TODO: Finish including all automaton classes
 
 Lexer::Lexer() {
     CreateAutomata();
@@ -33,6 +36,8 @@ void Lexer::CreateAutomata() {
     automata.push_back(new ColonDashAutomaton());
     automata.push_back(new End_Of_FileAutomaton());
     automata.push_back(new UndefinedAutomaton());
+    automata.push_back(new SchemesAutomaton());
+
     // TODO: Add the other needed automata here
 }
 
@@ -50,15 +55,15 @@ void Lexer::Run(std::string& input) {
 
         while (std::isspace(input.front())) {
             if (input.front() == '\n') {
-                std::cout << "Newline detected, incrementing lineNumber" << std::endl;
+//                std::cout << "Newline detected, incrementing lineNumber" << std::endl;
                 lineNumber++;
             }
-            std::cout << "Erasing leading whitespace" << std::endl;
+//            std::cout << "Erasing leading whitespace" << std::endl;
             input.erase(0, 1);
-            std::cout << "Updated String: \"" << input << "\"" << std::endl;
+//            std::cout << "Updated String: \"" << input << "\"" << std::endl;
         }
         if (input.empty()) {
-            std::cout << "Updated String is empty, breaking loop" << std::endl;
+//            std::cout << "Updated String is empty, breaking loop" << std::endl;
             break;
         }
 
@@ -86,14 +91,16 @@ void Lexer::Run(std::string& input) {
         std::cout << "Erasing " << std::to_string(maxRead) << " characters from current input" << std::endl;
         input.erase(input.begin(), input.begin() + maxRead);
     }
-    std::cout << "EOF reached, adding EOF token" << std::endl;
+//    std::cout << "EOF reached, adding EOF token" << std::endl;
     Automaton* EOFAutomaton = new End_Of_FileAutomaton();
     Token* newToken = EOFAutomaton->CreateToken(input, lineNumber);
     tokens.push_back(newToken);
 }
 
 void Lexer::printTokens() {
+    int numTokens = tokens.size();
     for (Token* currToken : tokens){
         std::cout << currToken->toString() << std::endl;
     }
+    std::cout << "Total Tokens = " << numTokens << std::endl;
 }
