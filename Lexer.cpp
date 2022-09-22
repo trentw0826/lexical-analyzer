@@ -1,4 +1,5 @@
 #include <cctype>
+
 #include "Lexer.h"
 #include "ColonAutomaton.h"
 #include "AddAutomaton.h"
@@ -15,6 +16,7 @@
 #include "FactsAutomaton.h"
 #include "RulesAutomaton.h"
 #include "QueriesAutomaton.h"
+#include "IDAutomaton.h"
 //#include "StringAutomaton.h"
 
 //TODO: Finish including all automaton classes
@@ -44,6 +46,7 @@ void Lexer::CreateAutomata() {
     automata.push_back(new FactsAutomaton());
     automata.push_back(new RulesAutomaton());
     automata.push_back(new QueriesAutomaton());
+    automata.push_back(new IDAutomaton());
 //    automata.push_back(new StringAutomaton());
 
     // TODO: Add the other needed automata here
