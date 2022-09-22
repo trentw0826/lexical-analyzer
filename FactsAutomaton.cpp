@@ -12,7 +12,6 @@ void FactsAutomaton::S0(const std::string& input) {
 }
 
 void FactsAutomaton::S1(const std::string& input) {
-
     if (input[index] == 'a') {
         inputRead++;
         index++;
