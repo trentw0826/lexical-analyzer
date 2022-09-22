@@ -27,6 +27,7 @@ int main(int argc, char** argv) {
     inputText = bufferStream.str();
 
     lexer->Run(inputText);
+    lexer->printTokens();
 
     delete lexer;
 

@@ -47,7 +47,7 @@ public:
             case TokenType::Q_MARK:
                 return "Q_MARK";
             case TokenType::LEFT_PAREN:
-                return "lEFT_PAREN";
+                return "LEFT_PAREN";
             case TokenType::RIGHT_PAREN:
                 return "RIGHT_PAREN";
             case TokenType::MULTIPLY:
