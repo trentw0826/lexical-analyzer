@@ -10,6 +10,7 @@
 #include "Right_ParenAutomaton.h"
 #include "ColonDashAutomaton.h"
 #include "End_Of_FileAutomaton.h"
+#include "UndefinedAutomaton.h"
 
 Lexer::Lexer() {
     CreateAutomata();
@@ -31,6 +32,7 @@ void Lexer::CreateAutomata() {
     automata.push_back(new Right_ParenAutomaton());
     automata.push_back(new ColonDashAutomaton());
     automata.push_back(new End_Of_FileAutomaton());
+    automata.push_back(new UndefinedAutomaton());
     // TODO: Add the other needed automata here
 }
 
@@ -77,8 +79,9 @@ void Lexer::Run(std::string& input) {
         } else { //No token accepted, make undefined token
             std::cout << "Creating an undefined Token" << std::endl;
             maxRead = 1;
-            //TODO:Create undefined token class and assign Token* newToken = UndefinedAutomaton->CreateToken(input, lineNumber);
-            //TODO:Then add newToken to 'tokens' vector
+            Automaton* UndefAutomaton = new UndefinedAutomaton();
+            Token* newToken = UndefAutomaton->CreateToken(input, lineNumber);
+            tokens.push_back(newToken);
         }
         std::cout << "Erasing " << std::to_string(maxRead) << " characters from current input" << std::endl;
         input.erase(input.begin(), input.begin() + maxRead);
