@@ -14,7 +14,8 @@
 #include "SchemesAutomaton.h"
 #include "FactsAutomaton.h"
 #include "RulesAutomaton.h"
-//#include "QueriesAutomaton.h"
+#include "QueriesAutomaton.h"
+//#include "StringAutomaton.h"
 
 //TODO: Finish including all automaton classes
 
@@ -42,8 +43,8 @@ void Lexer::CreateAutomata() {
     automata.push_back(new SchemesAutomaton());
     automata.push_back(new FactsAutomaton());
     automata.push_back(new RulesAutomaton());
-//    automata.push_back(new QueriesAutomaton());
-
+    automata.push_back(new QueriesAutomaton());
+//    automata.push_back(new StringAutomaton());
 
     // TODO: Add the other needed automata here
 }
@@ -78,8 +79,8 @@ void Lexer::Run(std::string& input) {
 //            std::cout << "Reading input into " << currAutomaton->getAutoType() << " automaton" << std::endl;
             int inputRead = currAutomaton->Start(input);
             if (inputRead > maxRead) {
-//                std::cout << "Updating maxRead to " << std::to_string(inputRead) << std::endl;
 //                std::cout << "Updating maxAutomaton to " << currAutomaton->getAutoType() << " type" << std::endl;
+//                std::cout << "Updating maxRead to " << std::to_string(inputRead) << std::endl;
                 maxRead = inputRead;
                 maxAutomaton = currAutomaton;
             }

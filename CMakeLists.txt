@@ -29,4 +29,18 @@ add_executable(Project236
         Q_MarkAutomaton.cpp
         Q_MarkAutomaton.h
         Right_ParenAutomaton.cpp
-        Right_ParenAutomaton.h End_Of_FileAutomaton.h End_Of_FileAutomaton.cpp UndefinedAutomaton.h UndefinedAutomaton.cpp SchemesAutomaton.h SchemesAutomaton.cpp FactsAutomaton.h FactsAutomaton.cpp RulesAutomaton.h RulesAutomaton.cpp QueriesAutomaton.h QueriesAutomaton.cpp StringAutomaton.h StringAutomaton.cpp)
+        Right_ParenAutomaton.h
+        End_Of_FileAutomaton.h
+        End_Of_FileAutomaton.cpp
+        UndefinedAutomaton.h
+        UndefinedAutomaton.cpp
+        SchemesAutomaton.h
+        SchemesAutomaton.cpp
+        FactsAutomaton.h
+        FactsAutomaton.cpp
+        RulesAutomaton.h
+        RulesAutomaton.cpp
+        QueriesAutomaton.h
+        QueriesAutomaton.cpp
+        StringAutomaton.h
+        StringAutomaton.cpp)
