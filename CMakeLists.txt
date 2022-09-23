@@ -43,4 +43,8 @@ add_executable(Project236
         QueriesAutomaton.h
         QueriesAutomaton.cpp
         StringAutomaton.h
-        StringAutomaton.cpp)
+        StringAutomaton.cpp
+        IDAutomaton.h
+        IDAutomaton.cpp BlockCommentAutomaton.h BlockCommentAutomaton.cpp LineCommentAutomaton.h LineCommentAutomaton.cpp)
+
+file(COPY exampleInputFiles DESTINATION ${CMAKE_BINARY_DIR})

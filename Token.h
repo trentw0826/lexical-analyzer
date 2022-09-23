@@ -20,7 +20,11 @@ enum class TokenType {
     ID,
     STRING,
     COMMENT,
+    LINECOMMENT,
+    BLOCKCOMMENT,
     UNDEFINED,
+    UNDEFINEDSTR,
+    UNDEFINEDCMT,
     END_OF_FILE
 };
 
@@ -68,7 +72,15 @@ public:
                 return "STRING";
             case TokenType::COMMENT:
                 return "COMMENT";
-            case TokenType::UNDEFINED:
+            case TokenType::LINECOMMENT:
+                return "COMMENT";
+            case TokenType::BLOCKCOMMENT:
+                return "COMMENT";
+            case TokenType::UNDEFINED: //TODO: Improve efficiency of returning "UNDEFINED" and "COMMENT"
+                return "UNDEFINED";
+            case TokenType::UNDEFINEDSTR:
+                return "UNDEFINED";
+            case TokenType::UNDEFINEDCMT:
                 return "UNDEFINED";
             case TokenType::END_OF_FILE:
                 return "EOF";

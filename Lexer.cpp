@@ -17,7 +17,8 @@
 #include "RulesAutomaton.h"
 #include "QueriesAutomaton.h"
 #include "IDAutomaton.h"
-//#include "StringAutomaton.h"
+#include "StringAutomaton.h"
+#include "LineCommentAutomaton.h"
 
 //TODO: Finish including all automaton classes
 
@@ -41,13 +42,15 @@ void Lexer::CreateAutomata() {
     automata.push_back(new Right_ParenAutomaton());
     automata.push_back(new ColonDashAutomaton());
     automata.push_back(new End_Of_FileAutomaton());
-    automata.push_back(new UndefinedAutomaton());
     automata.push_back(new SchemesAutomaton());
     automata.push_back(new FactsAutomaton());
     automata.push_back(new RulesAutomaton());
     automata.push_back(new QueriesAutomaton());
     automata.push_back(new IDAutomaton());
-//    automata.push_back(new StringAutomaton());
+    automata.push_back(new StringAutomaton());
+    automata.push_back(new LineCommentAutomaton());
+
+    automata.push_back(new UndefinedAutomaton());
 
     // TODO: Add the other needed automata here
 }
