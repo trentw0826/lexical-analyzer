@@ -8,8 +8,8 @@ int main(int argc, char** argv) {
     Lexer* lexer = new Lexer();
 
     //Verify command line has 2 arguments, an executable and .txt input
-    if (argc < 2){
-        std::cerr << "2 arguments required!\n";
+    if (argc != 2){
+        std::cerr << "Exactly 2 Args Required!\n";
     }
 
     //Verify that given .txt is usable

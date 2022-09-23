@@ -38,8 +38,5 @@ void StringAutomaton::S2(const std::string& input) {
         index++;
         S1(input);
     }
-    else{
-        inputRead++;
-    }
 //    std::cout << "STRING.S2 has finished a valid string" << std::endl;
 }

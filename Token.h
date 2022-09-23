@@ -73,9 +73,9 @@ public:
             case TokenType::COMMENT:
                 return "COMMENT";
             case TokenType::LINECOMMENT:
-                return "COMMENT";
+                return "LINECOMMENT";
             case TokenType::BLOCKCOMMENT:
-                return "COMMENT";
+                return "BLOCKCOMMENT";
             case TokenType::UNDEFINED: //TODO: Improve efficiency of returning "UNDEFINED" and "COMMENT"
                 return "UNDEFINED";
             case TokenType::UNDEFINEDSTR:

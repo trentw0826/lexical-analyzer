@@ -1,1 +1,6 @@
-#This Comment Will Terminate with EOF
+,
+'a string'
+# a comment
+Schemes
+FactsRules
+::-
