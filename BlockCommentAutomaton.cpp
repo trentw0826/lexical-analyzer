@@ -11,7 +11,7 @@ void BlockCommentAutomaton::S0(const std::string& input) {
     }
 }
 
-void BlockCommentAutomaton::S1(const std::string& input) { //TODO: Clean up checking of null char
+void BlockCommentAutomaton::S1(const std::string& input) {
     if(checkEOF(input)){
         this->type = TokenType::UNDEFINEDCMT;
     }
@@ -47,6 +47,7 @@ void BlockCommentAutomaton::S3(const std::string& input) {
         this->type = TokenType::UNDEFINEDCMT;
     }
     else if (input[index] != '#'){
+        checkNewLine(input[index]);
         inputRead++;
         index++;
         S2(input);

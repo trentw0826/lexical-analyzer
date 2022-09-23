@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
     bufferStream << inputFile.rdbuf();
     inputText = bufferStream.str();
 
+    //Run lexer and print resulting tokens
     lexer->Run(inputText);
     lexer->printTokens();
 

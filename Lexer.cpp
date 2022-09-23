@@ -21,8 +21,6 @@
 #include "LineCommentAutomaton.h"
 #include "BlockCommentAutomaton.h"
 
-//TODO: Finish including all automaton classes
-
 Lexer::Lexer() {
     CreateAutomata();
 }
@@ -51,20 +49,13 @@ void Lexer::CreateAutomata() {
     automata.push_back(new StringAutomaton());
     automata.push_back(new BlockCommentAutomaton());
     automata.push_back(new LineCommentAutomaton());
-
     automata.push_back(new UndefinedAutomaton());
-
-    // TODO: Add the other needed automata here
 }
 
 void Lexer::Run(std::string& input) {
     int lineNumber = 1;
-    int iteration = 0;
     while (!input.empty()) {
         int maxRead = 0;
-
-        iteration++;
-
         Automaton *maxAutomaton = automata.at(0);
 
         while (std::isspace(input.front())) {

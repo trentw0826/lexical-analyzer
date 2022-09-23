@@ -100,7 +100,7 @@ public:
     }
 
     bool checkEOF(std::string input){
-        return (index >= (int)input.length());
+        return ((unsigned long)index >= input.length());
     }
 };
 
