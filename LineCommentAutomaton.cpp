@@ -13,7 +13,10 @@ void LineCommentAutomaton::S0(const std::string& input) {
 }
 
 void LineCommentAutomaton::S1(const std::string& input) {
-    if (input[index] != '\n' && input[index] != 0) {
+    if(input[index] == '|' && index == 1){ //This is the start of a block comment, not a line comment
+        Serr();
+    }
+    else if (input[index] != '\n' && input[index] != 0) {
 //        std::cout << "LINECOMMENT.S1 has detected another comment character" << std::endl;
         inputRead++;
         index++;
