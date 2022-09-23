@@ -45,6 +45,10 @@ add_executable(Project236
         StringAutomaton.h
         StringAutomaton.cpp
         IDAutomaton.h
-        IDAutomaton.cpp BlockCommentAutomaton.h BlockCommentAutomaton.cpp LineCommentAutomaton.h LineCommentAutomaton.cpp)
+        IDAutomaton.cpp
+        BlockCommentAutomaton.h
+        BlockCommentAutomaton.cpp
+        LineCommentAutomaton.h
+        LineCommentAutomaton.cpp)
 
-file(COPY exampleInputFiles DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY Lab1PassOffCases DESTINATION ${CMAKE_BINARY_DIR})
