@@ -2,7 +2,6 @@
 
 void LineCommentAutomaton::S0(const std::string& input) {
     if (input[index] == '#') {
-//        std::cout << "LINECOMMENT.S0 has detected the start of a comment" << std::endl;
         inputRead++;
         index++;
         S1(input);
@@ -16,13 +15,9 @@ void LineCommentAutomaton::S1(const std::string& input) {
     if(input[index] == '|' && index == 1){ //This is the start of a block comment, not a line comment
         Serr();
     }
-    else if (input[index] != '\n' && input[index] != 0) {
-//        std::cout << "LINECOMMENT.S1 has detected another comment character" << std::endl;
+    else if (input[index] != '\n' && !checkEOF(input)) {
         inputRead++;
         index++;
         S1(input);
-    }
-    else {
-//        std::cout << "LINECOMMENT.S1 has detected the end of a valid comment" << std::endl;
     }
 }

@@ -94,10 +94,13 @@ public:
 
     int NewLinesRead() const { return newLines; }
 
-    void checkNewLine(char c){
-        if(c == '\n'){
+    void checkNewLine(char c) {
+        if (c == '\n')
             newLines++;
-        }
+    }
+
+    bool checkEOF(std::string input){
+        return (index >= (int)input.length());
     }
 };
 

@@ -12,7 +12,10 @@ void BlockCommentAutomaton::S0(const std::string& input) {
 }
 
 void BlockCommentAutomaton::S1(const std::string& input) { //TODO: Clean up checking of null char
-    if (input[index] == '|' && input[index] != 0) {
+    if(checkEOF(input)){
+        this->type = TokenType::UNDEFINEDCMT;
+    }
+    else if (input[index] == '|') {
         inputRead++;
         index++;
         S2(input);
@@ -20,13 +23,13 @@ void BlockCommentAutomaton::S1(const std::string& input) { //TODO: Clean up chec
     else if (input[index] != '|'){
         Serr();
     }
-    else if(input[index] == 0){
-        this->type = TokenType::UNDEFINEDCMT;
-    }
 }
 
 void BlockCommentAutomaton::S2(const std::string& input) {
-    if (input[index] != '|' && input[index] != 0) {
+    if(checkEOF(input)){
+        this->type = TokenType::UNDEFINEDCMT;
+    }
+    else if (input[index] != '|') {
         checkNewLine(input[index]);
         inputRead++;
         index++;
@@ -37,24 +40,18 @@ void BlockCommentAutomaton::S2(const std::string& input) {
         index++;
         S3(input);
     }
-    else if(input[index] == 0){
-        this->type = TokenType::UNDEFINEDCMT;
-    }
 }
 
 void BlockCommentAutomaton::S3(const std::string& input) {
-    if (input[index] != '#' && input[index] != 0){
+    if(checkEOF(input)){
+        this->type = TokenType::UNDEFINEDCMT;
+    }
+    else if (input[index] != '#'){
         inputRead++;
         index++;
         S2(input);
     }
-    else if (input[index] == '#' && input[index] != 0) {
+    else if (input[index] == '#') {
         inputRead++;
-    }
-    else if (input[index] != '#'){
-        Serr();
-    }
-    else if(input[index] == 0){
-        this->type = TokenType::UNDEFINEDCMT;
     }
 }
