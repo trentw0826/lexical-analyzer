@@ -1,4 +1,5 @@
 #include <cctype>
+#include <algorithm>
 
 #include "Lexer.h"
 #include "ColonAutomaton.h"
@@ -106,6 +107,11 @@ void Lexer::Run(std::string& input) {
             tokens.push_back(newToken);
         }
 //        std::cout << "Erasing " << std::to_string(maxRead) << " characters from current input" << std::endl;
+        for(int i = 0; i < maxRead; i++){
+            if (input[i] == '\n'){
+                lineNumber++;
+            }
+        }
         input.erase(input.begin(), input.begin() + maxRead);
     }
 //    std::cout << "EOF reached, adding EOF token" << std::endl;
@@ -119,5 +125,5 @@ void Lexer::printTokens() {
     for (Token* currToken : tokens){
         std::cout << currToken->toString() << std::endl;
     }
-    std::cout << "Total Tokens = " << numTokens << std::endl;
+    std::cout << "Total Tokens = " << numTokens;
 }
