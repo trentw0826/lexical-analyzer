@@ -13,6 +13,7 @@ void BlockCommentAutomaton::S0(const std::string& input) {
 
 void BlockCommentAutomaton::S1(const std::string& input) {
     if (input[index] == '|' && input[index] != 0) {
+        checkNewLine(input[index]);
         inputRead++;
         index++;
         S2(input);
@@ -27,11 +28,13 @@ void BlockCommentAutomaton::S1(const std::string& input) {
 
 void BlockCommentAutomaton::S2(const std::string& input) {
     if (input[index] != '|' && input[index] != 0) {
+        checkNewLine(input[index]);
         inputRead++;
         index++;
         S2(input);
     }
     else if (input[index] == '|'){
+        checkNewLine(input[index]);
         inputRead++;
         index++;
         S3(input);

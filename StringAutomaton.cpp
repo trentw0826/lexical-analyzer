@@ -15,6 +15,7 @@ void StringAutomaton::S0(const std::string& input) {
 void StringAutomaton::S1(const std::string& input) {
     if (input[index] != '\'' && input[index] != 0) {
 //        std::cout << "STRING.S1 has detected an \'" << input[index] << "\' as non EOF char" << std::endl;
+        checkNewLine(input[index]);
         inputRead++;
         index++;
         S1(input);

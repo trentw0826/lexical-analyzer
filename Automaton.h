@@ -93,6 +93,12 @@ public:
     virtual Token* CreateToken(std::string input, int lineNumber) { return new Token(type, input, lineNumber); }
 
     int NewLinesRead() const { return newLines; }
+
+    void checkNewLine(char c){
+        if(c == '\n'){
+            newLines++;
+        }
+    }
 };
 
 #endif // AUTOMATON_H

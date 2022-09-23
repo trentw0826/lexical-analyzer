@@ -15,4 +15,4 @@ public:
     void S0(const std::string& input);
 };
 
-#endif // STRINGAUTOMATON_H
+#endif // STRINGAUTOMATON_H.
