@@ -17,7 +17,7 @@
 #include "RulesAutomaton.h"
 #include "QueriesAutomaton.h"
 #include "IDAutomaton.h"
-//#include "StringAutomaton.h"
+#include "StringAutomaton.h"
 #include "LineCommentAutomaton.h"
 #include "BlockCommentAutomaton.h"
 
@@ -48,7 +48,7 @@ void Lexer::CreateAutomata() {
     automata.push_back(new RulesAutomaton());
     automata.push_back(new QueriesAutomaton());
     automata.push_back(new IDAutomaton());
-//    automata.push_back(new StringAutomaton());
+    automata.push_back(new StringAutomaton());
     automata.push_back(new LineCommentAutomaton());
     automata.push_back(new BlockCommentAutomaton());
 
